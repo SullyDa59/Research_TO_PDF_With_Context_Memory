@@ -1,5 +1,8 @@
 # Core dependencies
-flask>=3.0.0
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+itsdangerous>=2.1.0
 openai>=1.0.0
 requests>=2.31.0
 beautifulsoup4>=4.12.0
