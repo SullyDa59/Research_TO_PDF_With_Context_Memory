@@ -1825,11 +1825,11 @@ def mem0_monitor():
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <div><strong>{day['date']}</strong></div>
                     <div style="font-size: 13px;">
-                        {day['operations']} ops |
-                        {day['memories']} memories |
-                        {day['searches']} searches |
-                        ${day['cost']:.4f} |
-                        {int(day['latency_ms'])}ms avg
+                        {day['operations'] or 0} ops |
+                        {day['memories'] or 0} memories |
+                        {day['searches'] or 0} searches |
+                        ${day['cost'] or 0:.4f} |
+                        {int(day['latency_ms'] or 0)}ms avg
                     </div>
                 </div>
             </div>
@@ -2111,6 +2111,8 @@ def mem0_memories():
         '''
     else:
         for i, memory in enumerate(memories, 1):
+            if not isinstance(memory, dict):
+                continue
             metadata = memory.get('metadata', {})
             memory_type = metadata.get('type', 'unknown')
             memory_text = memory.get('memory', 'No content')

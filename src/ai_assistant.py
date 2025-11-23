@@ -21,7 +21,7 @@ def get_personalized_greeting(user_id):
         }
 
     # Get recent topics
-    topics = [m.get('metadata', {}).get('topic') for m in memories if m.get('metadata', {}).get('topic')]
+    topics = [m.get('metadata', {}).get('topic') for m in memories if isinstance(m, dict) and m.get('metadata', {}).get('topic')]
     recent_topics = list(set(topics))[:3]
 
     # Get preferred AI mode
@@ -29,7 +29,7 @@ def get_personalized_greeting(user_id):
     preferred_mode = ai_modes[0][0] if ai_modes else 'basic'
 
     # Get session count
-    session_count = sum(1 for m in memories if m.get('metadata', {}).get('type') == 'research_session')
+    session_count = sum(1 for m in memories if isinstance(m, dict) and m.get('metadata', {}).get('type') == 'research_session')
 
     greeting = f"👋 Welcome back! You've completed {session_count} research sessions."
 
@@ -180,7 +180,7 @@ def get_research_insights(user_id, topic):
         return None
 
     # Check if user has researched similar topics
-    similar_count = len([m for m in memories if m.get('metadata', {}).get('type') == 'research_session'])
+    similar_count = len([m for m in memories if isinstance(m, dict) and m.get('metadata', {}).get('type') == 'research_session'])
 
     if similar_count > 0:
         return {
