@@ -22,4 +22,4 @@ if __name__ == '__main__':
     print("="*60)
     print("\nOpen your browser to: http://localhost:5001\n")
 
-    app.run(host='0.0.0.0', port=5001, debug=True)
+    app.run(host='0.0.0.0', port=5001, debug=True, use_reloader=False)
