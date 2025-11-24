@@ -1252,7 +1252,7 @@ async def generate_pdf_process(request: Request):
         </div>
 
         <div style="margin: 20px 0;">
-            <button onclick="window.location.href='/download'">Download PDF</button>
+            <button onclick="window.location.href='/download?file={output_pdf}'">Download PDF</button>
             <button class="secondary" onclick="window.location.href='/'">Research Another Topic</button>
         </div>
 
